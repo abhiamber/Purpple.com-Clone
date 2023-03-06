@@ -1,0 +1,57 @@
+.pincodediv {
+  display: flex;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 8px 20px;
+  justify-content: space-between;
+  border: 1px solid #e5e2e2;
+  margin-top: 20px;
+}
+
+input:focus {
+  outline: none;
+  background-color: #f7f7f7;
+}
+
+input {
+  background-color: #f7f7f7;
+  font-size: 14px;
+}
+
+.pincodediv > p {
+  color: #2d4ef3ef;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.product_details_container {
+  gap: 30px;
+  height: auto;
+  width: 70%;
+  margin: auto;
+  margin-top: 50px;
+  padding: 10px;
+  background-color: white;
+}
+
+.cart_button {
+  border: none;
+  padding: 25px 60px;
+  color: white;
+  width: 100%;
+}
+
+.elite_member {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
+  border: 1px solid #d7bd66;
+  padding: 5px;
+  border-radius: 5px;
+}
+.product_image:hover {
+  transform: scale(1.09);
+  transition: transform 0.5s;
+  overflow: hidden;
+}

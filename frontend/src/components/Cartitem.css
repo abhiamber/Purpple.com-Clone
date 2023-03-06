@@ -1,0 +1,22 @@
+img{
+    width:100px;
+    height: 100px;
+
+}
+.cartitems{
+    display: flex;
+    width: 100%;
+    margin: auto;
+    /* border: 1px solid; */
+    margin-top: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.cartitemdet>p:nth-child(1){
+    font-size: 16px;
+    color: black;
+}
+.cartitemdet{
+    margin-left:5% ;
+    margin-right: 25%;
+    text-align: left;
+}
