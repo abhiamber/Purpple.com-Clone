@@ -5,9 +5,7 @@ import Product from "../components/ShopCatogories/Product";
 const ProductMain = () => {
   return (
     <Box>
-      <Box>
-        <Product />
-      </Box>
+      <Product />
     </Box>
   );
 };

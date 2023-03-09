@@ -27,8 +27,11 @@ const Productdetails = () => {
   //   console.log(pro);
 
   const handleAdd = async () => {
+    if (!localStorage.getItem("token")) {
+      return alert("Login First ");
+    }
     try {
-      fetch(`${BackendURL}/cart/`, {
+      fetch(`${BackendURL}/cart`, {
         method: "POST",
         body: JSON.stringify({ productId: pro._id }),
         headers: {
@@ -102,8 +105,8 @@ const Productdetails = () => {
           (102 Rating | {pro.review} reviews)
         </Text>
         <Text fontSize={"20px"}>
-          <b>₹{pro.price * 75}</b>{" "}
-          <span style={{ fontSize: "14px", color: "green" }}>(save 112)</span>
+          <b>Price - ₹{pro.price}</b>{" "}
+          <span style={{ fontSize: "14px", color: "green" }}>(save more)</span>
         </Text>
 
         <Text marginTop={"5px"}>

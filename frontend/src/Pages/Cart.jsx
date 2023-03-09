@@ -83,7 +83,7 @@ const Cart = () => {
   };
 
   const getCartItem = () => {
-    let p = localStorage.getItem("token");
+    let p = localStorage.getItem("token") || null;
     if (p === null) {
       p = "Pushpendra Singh";
     }
@@ -95,13 +95,13 @@ const Cart = () => {
     })
       .then((res) => res.json())
       .then((res) => {
+        // console.log(res);
         if (res.state === "NOT") {
           return setCart([]);
         }
         setCart(res[0].products);
         // console.log(res[0]);
         setCartId(res[0]._id);
-        localStorage.setItem("uproid", res[0]._id);
         localStorage.setItem("cartItem", res[0]._id);
       })
       .catch((err) => console.log(err));
@@ -329,7 +329,7 @@ const Cart = () => {
               </ModalFooter>
             </ModalContent>
           </Modal>
-          <p>Need Help? 8655500222 </p>
+          <p>Need Help? 9039362782 </p>
         </Box>
       </Box>
     </SimpleGrid>

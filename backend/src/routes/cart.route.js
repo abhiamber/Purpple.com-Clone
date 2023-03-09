@@ -11,7 +11,7 @@ let CartModel = require("../models/cart.model");
 app.get("/fetchcartItem", async (req, res) => {
   let { token } = req.headers;
   if (token == "Pushpendra Singh") {
-    return res.send({ msg: "Not logged in" });
+    return res.send({ msg: "Not logged in", state: "NOT" });
   }
 
   token = jwt.verify(token, process.env.token_password);
@@ -38,24 +38,26 @@ app.get("/fetchcartItem", async (req, res) => {
 // **************add to cart*********************
 app.post("/", async (req, res) => {
   let { token } = req.headers;
-  let { productId, qty } = req.body;
-  // console.log("nkjbkjbkbj");
-  if (!token) {
-    return res.status(501).send({ meesg: "Not logged in" });
-  }
+  let { productId, qty = 1 } = req.body;
+
   token = jwt.decode(token, process.env.token_password);
+  if (!token) {
+    return res.send({ meesg: "Not logged in", state: "NOT" });
+  }
   let userId = token.id;
-  let cart = await CartModel.findOne({ userId });
-  // console.log(itemIndex, productId, qty, "1");
+  let cart = await CartModel.findOne({ userId, active: true });
 
   try {
     if (!cart) {
-      let newCartItem = new CartModel({ userId, products: [{ productId }] });
+      let newCartItem = new CartModel({
+        userId,
+        products: [{ productId }],
+      });
       await newCartItem.save();
-      console.log(newCartItem);
+      // console.log(newCartItem);
       // console.log(itemIndex, productId, qty, "2");
 
-      return res.status(200).send(newCartItem);
+      return res.send({ meesg: newCartItem, state: "OK" });
     } else {
       let itemIndex = cart.products.findIndex((p) => p.productId == productId);
       console.log(itemIndex, productId, qty, "3");
@@ -68,28 +70,30 @@ app.post("/", async (req, res) => {
       }
 
       await cart.save();
-      return res.status(201).send(cart);
+      return res.send({ messg: cart, state: "OK" });
     }
   } catch (e) {
-    return res.send(e.message);
+    return res.send({ messg: e.message, state: "NOT" });
   }
 });
 
 app.post("/changecartactive", async (req, res) => {
   let { token } = req.headers;
   let { cartId } = req.body;
+  // console.log(cartId);
   if (!token) {
-    return res.status(501).send({ msg: "Not logged in" });
+    return res.status(501).send({ msg: "Not logged in", state: "NOT" });
   }
   token = jwt.decode(token, process.env.token_password);
   let userId = token.id;
   let cart = await CartModel.findOne({ userId });
   try {
     if (!cart) {
-      return res.send({ msg: "Cart not exsit" });
+      return res.send({ msg: "Cart not exsit", state: "NOT" });
     } else {
-      await CartModel.updateOne({ userId, cartId, active: false });
-      return res.send({ msg: "Cart updated successfully" });
+      let data = await CartModel.findByIdAndUpdate(cartId, { active: false });
+      // console.log(data);
+      return res.send({ msg: "Cart updated successfully", data });
     }
   } catch (e) {
     return res.send({ msg: e.message });
@@ -101,7 +105,7 @@ app.delete("/delete/:id", async (req, res) => {
   const id = req.params.id;
   try {
     let itsms = await CartModel.findByIdAndDelete({ _id: id });
-    console.log("These are the items", itsms);
+    // console.log("These are the items", itsms);
     res.send("Your Order has been placed successfully");
   } catch (err) {
     console.log(err);

@@ -7,10 +7,10 @@ const connect = require("./src/config/db");
 const UserRoutes = require("./src/routes/user.route");
 const LoginRoute = require("./src/routes/login.route");
 const SignupRotue = require("./src/routes/signup.route");
-const CartRouter = require('./src/routes/cart.route');
+const CartRouter = require("./src/routes/cart.route");
 const ProdRoute = require("./src/routes/prod.route");
-const OrderRouter  = require('./src/routes/order.route');
-
+const OrderRouter = require("./src/routes/order.route");
+const AdminRoutes = require("./src/routes/admin.route");
 require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 mongoose.set("strictQuery", false);
@@ -29,9 +29,9 @@ app.use("/signup", SignupRotue);
 app.use("/login", LoginRoute);
 app.use("/user", UserRoutes);
 app.use("/prod", ProdRoute);
-app.use('/order', OrderRouter);
+app.use("/order", OrderRouter);
 app.use("/cart", CartRouter);
-
+app.use("/admin", AdminRoutes);
 httpServer.listen(PORT, async () => {
   try {
     await connect();

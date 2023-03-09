@@ -39,17 +39,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { GetToSearchQueryProduct } from "../redux/prod/prod.action";
 
 const SearchBox = () => {
-  let user;
   const { logout } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useDispatch();
   const Navigate = useNavigate();
   const btnRef = React.useRef();
   let [query, setQuery] = useState();
-  let users = JSON.parse(localStorage.getItem("userName")) || null;
-  if (users) {
-    user = users.user;
-  }
+  let users = JSON.parse(localStorage.getItem("user")) || null;
 
   // console.log(user);
 
@@ -67,11 +63,10 @@ const SearchBox = () => {
   return (
     <Box
       pt="5px"
-      ml="38px"
       display={{ sm: "none", base: "none", md: "block", lg: "block" }}
     >
       <Flex p="3px">
-        <Box h="10">
+        <Box h="10" ml="38px">
           <Flex>
             {" "}
             <Button
@@ -149,74 +144,96 @@ const SearchBox = () => {
               <CiHeart />
             </Box>
 
-            <Box color={"black"} fontWeight="light" fontSize="40px">
+            <Box color={"black"} fontWeight="light" fontSize="40px" mt="-1.5">
               <Popover trigger="hover">
                 <PopoverTrigger>
-                  <Box className={"blackHover"}>
+                  <Box className={"blackHover"} p="7px">
                     <CiFaceSmile />
                   </Box>
                 </PopoverTrigger>
-                <PopoverContent w="15vw">
+                <PopoverContent w="20vw">
                   <PopoverArrow />
                   <PopoverHeader>
-                    <Box h="0.5px" bg="black" w="73%" m="auto"></Box>
+                    <Box h="0.5px" bg="black" w="100%" m="auto"></Box>
                     <Flex
                       mx="10px"
                       alignItems="center"
                       justifyContent="space-between"
                       flexDirection={"column"}
                     >
-                      {user ? (
-                        <Text color={"green"} fontSize="20px">
-                          <Link to="#">{user}</Link>
-                        </Text>
+                      {users ? (
+                        <Box>
+                          <Text color={"green"} fontSize="30px">
+                            {users.name}
+                          </Text>
+
+                          <Button
+                            variant="outline"
+                            w="100%"
+                            bg="blue"
+                            fontSize={"17px"}
+                            color={"black"}
+                          >
+                            <Link to="/order">Your Order</Link>
+                          </Button>
+
+                          <Button
+                            variant="outline"
+                            w="100%"
+                            bg="blue"
+                            fontSize={"23px"}
+                            color={"red"}
+                          >
+                            <Link to="/" onClick={logout}>
+                              Logout
+                            </Link>
+                          </Button>
+
+                          {users.role === "Admin" ? (
+                            <Button
+                              color={"black"}
+                              variant="outline"
+                              w="100%"
+                              bg="blue"
+                            >
+                              <Link to="/admin">Admin</Link>
+                            </Button>
+                          ) : null}
+                        </Box>
                       ) : (
-                        <Button
-                          color={"black"}
-                          variant="outline"
-                          w="150px"
-                          bg="blue"
-                        >
-                          <Link to="/login">Sign in</Link>
-                        </Button>
-                      )}
-                      {user ? (
-                        <Text fontSize={"17px"} color={"red"}>
-                          <Link to="/order">Your Order</Link>
-                        </Text>
-                      ) : (
-                        <Text fontSize={"17px"} color={"red"}>
-                          <Link to="/register">New Customer?</Link>
-                        </Text>
-                      )}
-                      {user ? (
-                        <Text color={"red"}>
-                          <Link to="/" onClick={logout} fontSize={"23px"}>
-                            Logout
-                          </Link>
-                        </Text>
-                      ) : (
-                        <Text fontSize={"20px"} color={"red"}>
-                          <Link to="/register">Register Now.</Link>
-                        </Text>
-                      )}
-                      {user &&
-                      localStorage.getItem("email") ===
-                        "pushpendra1697@gmail.com" ? (
-                        <Text fontSize={"23px"}>
-                          {" "}
-                          <Link to="/admin">Admin</Link>{" "}
-                        </Text>
-                      ) : (
-                        <Text fontSize={"23px"}>
-                          {" "}
-                          <Link to="/admin">User</Link>{" "}
-                        </Text>
+                        <Box>
+                          <Button
+                            color={"black"}
+                            variant="outline"
+                            w="100%"
+                            bg="blue"
+                          >
+                            <Link to="/login">Sign in</Link>
+                          </Button>
+
+                          <Button
+                            variant="outline"
+                            w="100%"
+                            bg="blue"
+                            fontSize={"17px"}
+                            color={"red"}
+                          >
+                            <Link to="/register">New Customer?</Link>
+                          </Button>
+
+                          <Button
+                            variant="outline"
+                            w="100%"
+                            bg="blue"
+                            fontSize={"20px"}
+                            color={"red"}
+                          >
+                            <Link to="/register">Register Now.</Link>
+                          </Button>
+                        </Box>
                       )}
                     </Flex>
-                    <Box h="1px" bg="black" w="70%" m="auto"></Box>
                   </PopoverHeader>
-                  <PopoverBody></PopoverBody>
                 </PopoverContent>
               </Popover>
             </Box>
@@ -230,7 +247,9 @@ const SearchBox = () => {
         </Box>
       </Flex>
       <hr />
-      <NavItem />
+      <Box w="100%" m="auto">
+        <NavItem />
+      </Box>
     </Box>
   );
 };

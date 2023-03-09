@@ -33,7 +33,7 @@ export default function Login() {
     setFirst(userObject);
     document.getElementById("signInDiv").hidden = true;
   };
-  
+
   useEffect(() => {
     /* global google */
     google.accounts.id.initialize({
@@ -77,7 +77,6 @@ export default function Login() {
           alert("Login Successful");
           console.log(data);
           login(data);
-          localStorage.setItem("token", data.token);
           navigate(redirectPath, { replace: true });
         }
       })

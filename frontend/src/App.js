@@ -7,18 +7,26 @@ import { Box } from "@chakra-ui/react";
 import AsFooter from "./components/Home/AsFooter";
 function App() {
   const [scrolled, setScrolled] = useState(false);
+  const handleScroll = (e) => {
+    // console.log(scrolled,typeof window.scrollY);
+
+    if (scrolled && window.scrollY === 0) {
+      setScrolled(false);
+    }
+
+    setScrolled(window.scrollY > 0);
+  };
+
+  // console.log("bjhbj", window.scrollY);
 
   useLayoutEffect(() => {
-    const handleScroll = (e) => {
-      setScrolled(window.scrollY > 0);
-    };
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <div>
       {scrolled ? (

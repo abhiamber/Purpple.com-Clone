@@ -16,7 +16,6 @@ const NavItem = () => {
       gap="30px"
       bg="white"
       cursor={"pointer"}
-      // boxShadow={` rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;`}
       justifyContent="center"
     >
       <Shop />

@@ -7,17 +7,15 @@ import {
   Radio,
   RadioGroup,
   Select,
-  SimpleGrid,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { Navigate, NavLink } from "react-router-dom";
 import BackendURL from "../BackendURL";
 import "./Payment.css";
 const Payment = () => {
   const [cart, setCart] = useState([]);
-  let userid = localStorage.getItem("uproid");
+  let userid = localStorage.getItem("cartItem");
   useEffect(() => {
     fetch(`${BackendURL}/cart/fetchcartItem`, {
       headers: {
@@ -69,16 +67,16 @@ const Payment = () => {
       })
       .catch((err) => console.log(err));
 
-    fetch(`${BackendURL}/cart/delete/${userid}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => console.log("Order Placed"))
-      .catch((err) => console.log(err));
+    // fetch(`${BackendURL}/cart/delete/${userid}`, {
+    //   method: "DELETE",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     token: localStorage.getItem("token"),
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => console.log("Order Placed"))
+    //   .catch((err) => console.log(err));
     alert("Successfully placed order");
     return (window.location.href = "/");
   };
@@ -371,6 +369,17 @@ const Payment = () => {
               ₹{total - total * (10 / 100)}
             </Text>
           </Box>
+          <Button
+            bg={"#e40980"}
+            width="40%"
+            borderRadius="0px"
+            _hover={{ bg: "#e40980" }}
+            color="white"
+            mb={5}
+            onClick={handleOrder}
+          >
+            PAY Now
+          </Button>
         </Box>
       </Box>
     </Box>

@@ -35,14 +35,10 @@ import {
 import Navmenu from "./NavbarItem/Navmenu";
 
 const Navbar = () => {
-  let user;
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { logout } = useContext(AuthContext);
-  let users = JSON.parse(localStorage.getItem("userName")) || null;
+  let users = JSON.parse(localStorage.getItem("user")) || null;
 
-  if (users) {
-    user = users.user;
-  }
   const btnRef = React.useRef();
   const dispatch = useDispatch();
   const Navigate = useNavigate();
@@ -60,15 +56,18 @@ const Navbar = () => {
 
   return (
     <Flex
-      m="auto"
       // ml="12px"
-      pl="18px"
-      pr="18px"
+      pl="8px"
+      pr="8px"
+      // Text-Align="center"
       position={"sticky"}
       top="0px"
       zIndex={999}
       bg="white"
       mb="5px"
+      justifyContent={"space-between"}
+      w="100%"
+      m="auto"
     >
       <Box p="4" w="70px">
         <Link to="/" w="70px">
@@ -91,7 +90,6 @@ const Navbar = () => {
         <NavItem />
       </Box>
 
-      <Spacer />
       <Box p="4">
         <Flex>
           <Box>
@@ -162,67 +160,91 @@ const Navbar = () => {
                   <CiFaceSmile />
                 </Box>
               </PopoverTrigger>
-              <PopoverContent w="15vw">
+              <PopoverContent w="20vw">
                 <PopoverArrow />
                 <PopoverHeader>
-                  <Box h="0.5px" bg="black" w="73%" m="auto"></Box>
+                  <Box h="0.5px" bg="black" w="100%" m="auto"></Box>
                   <Flex
                     mx="10px"
                     alignItems="center"
                     justifyContent="space-between"
                     flexDirection={"column"}
                   >
-                    {user ? (
-                      <Text color={"green"} fontSize="20px">
-                        <Link to="#">{user}</Link>
-                      </Text>
+                    {users ? (
+                      <Box>
+                        <Text color={"green"} fontSize="30px">
+                          {users.name}
+                        </Text>
+
+                        <Button
+                          color={"black"}
+                          variant="outline"
+                          w="100%"
+                          bg="blue"
+                          fontSize={"17px"}
+                        >
+                          <Link to="/order">Your Order</Link>
+                        </Button>
+
+                        <Button
+                          variant="outline"
+                          w="100%"
+                          bg="blue"
+                          fontSize={"23px"}
+                          color={"red"}
+                        >
+                          <Link to="/" onClick={logout}>
+                            Logout
+                          </Link>
+                        </Button>
+
+                        {users.role === "Admin" ? (
+                          <Button
+                            color={"black"}
+                            variant="outline"
+                            w="100%"
+                            bg="blue"
+                          >
+                            <Link to="/admin">Admin</Link>
+                          </Button>
+                        ) : null}
+                      </Box>
                     ) : (
-                      <Button
-                        color={"black"}
-                        variant="outline"
-                        w="150px"
-                        bg="blue"
-                      >
-                        <Link to="/login">Sign in</Link>
-                      </Button>
-                    )}
-                    {user ? (
-                      <Text fontSize={"17px"} color={"red"}>
-                        <Link to="/order">Your Order</Link>
-                      </Text>
-                    ) : (
-                      <Text fontSize={"17px"} color={"red"}>
-                        <Link to="/register">New Customer?</Link>
-                      </Text>
-                    )}
-                    {user ? (
-                      <Text fontSize={"23px"} color={"red"}>
-                        <Link to="/" onClick={logout}>
-                          Logout
-                        </Link>
-                      </Text>
-                    ) : (
-                      <Text fontSize={"20px"} color={"red"}>
-                        <Link to="/register">Register Now.</Link>
-                      </Text>
-                    )}
-                    {user &&
-                      localStorage.getItem("email") ===
-                      "pushpendra1697@gmail.com" ? (
-                      <Text fontSize={"23px"}>
-                        {" "}
-                        <Link to="/admin">Admin</Link>{" "}
-                      </Text>
-                    ) : (
-                      <Text fontSize={"23px"}>
-                        {" "}
-                        <Link to="/admin">User</Link>{" "}
-                      </Text>
+                      <Box>
+                        <Button
+                          color={"black"}
+                          variant="outline"
+                          w="100%"
+                          bg="blue"
+                        >
+                          <Link to="/login">Sign in</Link>
+                        </Button>
+
+                        <Button
+                          // color={"black"}
+                          variant="outline"
+                          w="100%"
+                          bg="blue"
+                          fontSize={"17px"}
+                          color={"red"}
+                        >
+                          <Link to="/register">New Customer?</Link>
+                        </Button>
+
+                        <Button
+                          // color={"black"}
+                          variant="outline"
+                          w="100%"
+                          bg="blue"
+                          fontSize={"20px"}
+                          color={"red"}
+                        >
+                          <Link to="/register">Register Now.</Link>
+                        </Button>
+                      </Box>
                     )}
                   </Flex>
-                  <Box h="1px" bg="black" w="70%" m="auto"></Box>
                 </PopoverHeader>
-                <PopoverBody></PopoverBody>
               </PopoverContent>
             </Popover>
           </Box>
@@ -239,7 +261,7 @@ const Navbar = () => {
           </Box>
         </Flex>
       </Box>
-      <Spacer />
+
       <Box
         p="4"
         display={{ lg: "none", md: "none", sm: "block", base: "block" }}

@@ -1,3 +1,18 @@
+// import { Center, Image } from "@chakra-ui/react";
+// import React from "react";
+
+// function OrderDetails() {
+//   return (
+//     <div>
+//       <Center>
+//         <Image src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" />
+//       </Center>
+//     </div>
+//   );
+// }
+
+// export default OrderDetails;
+
 import {
   Box,
   Button,
@@ -5,6 +20,7 @@ import {
   CardBody,
   Heading,
   Image,
+  Input,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -15,41 +31,95 @@ import {
   Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import BackendURL from "../BackendURL";
+import BackendURL from "../../BackendURL";
 
-const Order = () => {
+const OrderDetails = () => {
   const [orders, setOrders] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState();
+
+  const handleSubmit = () => {
+    getOrders();
+  };
 
   const getOrders = async () => {
-    await fetch(`${BackendURL}/order/getorderdetailsofuser`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        token: localStorage.getItem("token"),
-      },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // console.log(res.notDelivered);
-        setOrders(res.notDelivered);
-      })
-      .catch((err) => {
-        console.log(err);
+    let res;
+    console.log(search, page);
+    if (search) {
+      res = await fetch(
+        `${BackendURL}/order/getall?page=${page}&search=${search}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            token: localStorage.getItem("token"),
+          },
+        }
+      );
+    } else {
+      res = await fetch(`${BackendURL}/order/getall?page=${page}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("token"),
+        },
       });
+    }
+    try {
+      let data = await res.json();
+      console.log(data.delivered);
+      setOrders(data.delivered);
+    } catch (e) {
+      console.log(e.message);
+    }
   };
 
   useEffect(() => {
-    getOrders();
-  }, []);
+    getOrders(page);
+  }, [page]);
+
+  // console.log("dnkjjbk");
 
   return (
     <div>
       <Heading textAlign={"center"} m={"2% 0"}>
         Orders Details
       </Heading>
+      <Box display={"flex"} justifyContent="space-around" flexWrap={"wrap"}>
+        <Box>
+          <Input
+            placeholder="userName"
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <Button w="100%" mt="15px" onClick={handleSubmit}>
+            Search
+          </Button>
+        </Box>
+        <Box>
+          <Button
+            isDisabled={page === 1}
+            onClick={() => {
+              setPage(page - 1);
+              // getOrders(page - 1);
+            }}
+          >
+            Prev
+          </Button>
+          <Button>{page}</Button>
+          <Button
+            onClick={() => {
+              setPage(page + 1);
+              // getOrders(page + 1);
+            }}
+          >
+            Next
+          </Button>
+        </Box>
+      </Box>
       <Box
         w="80%"
         m="auto"
+        mt="10px"
         display={"flex"}
         flexWrap="wrap"
         gap="5"
@@ -154,4 +224,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default OrderDetails;

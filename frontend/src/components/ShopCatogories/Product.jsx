@@ -29,6 +29,7 @@ const Product = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { prod } = useSelector((store) => store);
+  console.log(prod);
 
   const setLengthFunction = () => {
     // console.log("bjabxh");
@@ -90,7 +91,7 @@ const Product = () => {
 
   if (!productData.length > 0) {
     return (
-      <Stack>
+      <Box w="80%" m="auto">
         <Skeleton height="40px" />
         <Skeleton height="40px" />
         <Skeleton height="40px" />
@@ -103,7 +104,7 @@ const Product = () => {
         <Skeleton height="40px" />
         <Skeleton height="40px" />
         <Skeleton height="40px" />
-      </Stack>
+      </Box>
     );
   }
 
@@ -138,7 +139,7 @@ const Product = () => {
                     ? "SoldOut"
                     : prod.quantity < 10
                     ? `Only ${prod.quantity} left`
-                    : null}
+                    : "Available"}
                 </Text>
 
                 <Link to={`/productmain/${prod._id}`}>
@@ -153,12 +154,12 @@ const Product = () => {
                 </Link>
                 <Text
                   fontSize="15px"
-                  p="5px"
+                  p="8px"
                   fontWeight="600"
                   textAlign={"center"}
                   // h="30px"
                 >
-                  {prod.name}
+                  Name - {prod.name.slice(0, 8)}
                 </Text>
                 <Text fontSize="15px" fontWeight="600" textAlign={"center"}>
                   {" "}

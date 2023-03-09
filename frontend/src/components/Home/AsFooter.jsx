@@ -11,6 +11,7 @@ export default function AsFooter() {
   return (
     <>
       <SimpleGrid
+        m="auto"
         mt="30px"
         columns={[2, 2, 4]}
         p={["20px", "20px", "20px"]}
@@ -202,9 +203,9 @@ export default function AsFooter() {
           columns={4}
           pl={[null, null, "120px"]}
           pr={[null, null, "120px"]}
-          spacing="150px"
+          spacing="105px"
         >
-          <Box w="200px">
+          <Box w="150px">
             <Heading as="h5" size="15px" color="gray" pt="40px" pl="30px">
               PAYMENT
             </Heading>
@@ -213,18 +214,19 @@ export default function AsFooter() {
             <Image
               mt="15px"
               src="https://media6.ppl-media.com/mediafiles/ecomm/promo/1499177379_tt.jpg"
-              w="300px"
+              w="70%"
               h="27px"
             />
           </Box>
         </SimpleGrid>
         <SimpleGrid
+          m="auto"
           columns={4}
-          pl={[null, null, "120px"]}
-          pr={[null, null, "120px"]}
-          spacing="150px"
+          pl={[null, null, "10px"]}
+          pr={[null, null, "10px"]}
+          spacing="105px"
         >
-          <Box w="200px">
+          <Box w="150px">
             <Heading as="h5" size="15px" color="gray" pt="40px" pl="30px">
               CONNECT
             </Heading>
@@ -232,7 +234,7 @@ export default function AsFooter() {
           <Box pl="-20px" w="300px">
             <Image
               cursor="pointer"
-              w="200px"
+              w="70%"
               mt="0px"
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5XY1bxw40RPgonlgvx4W_5JcNQA5szpT1Bw&usqp=CAU"
             />

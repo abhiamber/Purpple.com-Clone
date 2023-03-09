@@ -5,9 +5,11 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const login = (user) => {
-    localStorage.setItem("user", user.token);
-    localStorage.setItem("email", user.email);
-    localStorage.setItem("userName", JSON.stringify({ user: user.user }));
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ name: user.user, role: user.role })
+    );
+    localStorage.setItem("token", user.token);
     setUser(user);
   };
 
@@ -19,8 +21,6 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-    localStorage.removeItem("email");
-    localStorage.removeItem("userName");
   };
 
   return (
