@@ -9,10 +9,10 @@ ReactJS, JavaScript, Chakra-UI, MongoDB, NodeJS, Express
 
 
 ## Deployment Frontend Link
-https://frontend-eight-tawny-20.vercel.app
+https://frontend-lyart-alpha.vercel.app
 
 
-## Deployment Frontend Link
+## Deployment Backend Link
 https://abhishek-purpple.onrender.com
 
 ## Demo Signup Credentials
