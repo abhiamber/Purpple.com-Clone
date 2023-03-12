@@ -56,10 +56,8 @@ const Navbar = () => {
 
   return (
     <Flex
-      // ml="12px"
       pl="8px"
       pr="8px"
-      // Text-Align="center"
       position={"sticky"}
       top="0px"
       zIndex={999}
@@ -264,7 +262,7 @@ const Navbar = () => {
 
       <Box
         p="4"
-        display={{ lg: "none", md: "none", sm: "block", base: "block" }}
+        display={{ lg: "none", md: "block", sm: "block", base: "block" }}
       >
         <Navmenu />
       </Box>

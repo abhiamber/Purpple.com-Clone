@@ -1,4 +1,5 @@
 // import { useEffect } from "react";
+import { Box } from "@chakra-ui/react";
 import AsBigBrand from "../components/Home/AsBigBrand";
 import AsBigDeals from "../components/Home/AsBigDeals";
 import AsBottomSection from "../components/Home/AsBottomSection";
@@ -15,7 +16,7 @@ import AsSpLooksGallery from "../components/Home/AsSpLooksGallery";
 
 export default function Home() {
   return (
-    <>
+    <Box m="auto" w="90%">
       <AsImgGallery />
       <AsCatSlider />
       <AsDeals />
@@ -29,6 +30,6 @@ export default function Home() {
       <AsBigBrand />
       <AsBigDeals />
       <AsBottomSection />
-    </>
+    </Box>
   );
 }

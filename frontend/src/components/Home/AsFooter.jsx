@@ -9,17 +9,10 @@ import {
 
 export default function AsFooter() {
   return (
-    <>
-      <SimpleGrid
-        m="auto"
-        mt="30px"
-        columns={[2, 2, 4]}
-        p={["20px", "20px", "20px"]}
-        pb={["50px", "50px", "50px"]}
-        pr={["150px", "150px", "150px"]}
-      >
+    <Box>
+      <SimpleGrid m="auto" mt="30px" columns={[1, 2, 4]}>
         <VStack>
-          <Box>
+          <Box pt="8px">
             <Heading
               textAlign="left"
               as="h5"
@@ -77,7 +70,7 @@ export default function AsFooter() {
           </Box>
         </VStack>
         <VStack>
-          <Box>
+          <Box pt="8px">
             <Heading
               textAlign="left"
               as="h5"
@@ -99,7 +92,7 @@ export default function AsFooter() {
           </Box>
         </VStack>
         <VStack>
-          <Box>
+          <Box ml="80px">
             <Heading
               textAlign="left"
               as="h5"
@@ -136,28 +129,10 @@ export default function AsFooter() {
             >
               Return & Cancellation Policy
             </Text>
-            <Text
-              textAlign="left"
-              fontSize="14px"
-              color="#6C7A82"
-              cursor="pointer"
-              mb="5px"
-            >
-              Press
-            </Text>
-            <Text
-              textAlign="left"
-              fontSize="14px"
-              color="#6C7A82"
-              cursor="pointer"
-              mb="5px"
-            >
-              Sitemap
-            </Text>
           </Box>
         </VStack>
         <VStack>
-          <Box>
+          <Box pt="8px">
             <Heading
               textAlign="left"
               as="h5"
@@ -241,6 +216,6 @@ export default function AsFooter() {
           </Box>
         </SimpleGrid>
       </SimpleGrid>
-    </>
+    </Box>
   );
 }
