@@ -129,7 +129,7 @@ const Order = () => {
                         </Text>
 
                         <Text fontSize={"25px"} textAlign={"left"}>
-                          Tptal Price - {ele.priceTotal}
+                          Total Price - {ele.priceTotal}
                         </Text>
 
                         <Text fontSize={"25px"} textAlign={"left"}>
