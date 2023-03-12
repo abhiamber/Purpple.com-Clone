@@ -28,7 +28,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <Box>
       {scrolled ? (
         <Navbar />
       ) : (
@@ -43,7 +43,10 @@ function App() {
       )}
       <AllRoutes />
       <AsFooter />
-    </div>
+      <Box bg="black" color="white" p="10px" textAlign={"center"}>
+        @ All Right Reseerved{" "}
+      </Box>
+    </Box>
   );
 }
 

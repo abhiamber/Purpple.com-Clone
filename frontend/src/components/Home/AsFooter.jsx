@@ -9,7 +9,7 @@ import {
 
 export default function AsFooter() {
   return (
-    <Box>
+    <Box m="auto" w="90%">
       <SimpleGrid m="auto" mt="30px" columns={[1, 2, 4]}>
         <VStack>
           <Box pt="8px">
@@ -171,50 +171,6 @@ export default function AsFooter() {
             </Text>
           </Box>
         </VStack>
-      </SimpleGrid>
-      <Box border="1px" borderColor="#e8e8e8" w="85%" m="auto"></Box>
-      <SimpleGrid columns={[1, 1, 2]}>
-        <SimpleGrid
-          columns={4}
-          pl={[null, null, "120px"]}
-          pr={[null, null, "120px"]}
-          spacing="105px"
-        >
-          <Box w="150px">
-            <Heading as="h5" size="15px" color="gray" pt="40px" pl="30px">
-              PAYMENT
-            </Heading>
-          </Box>
-          <Box pl="-20px" w="300px" mt="25px">
-            <Image
-              mt="15px"
-              src="https://media6.ppl-media.com/mediafiles/ecomm/promo/1499177379_tt.jpg"
-              w="70%"
-              h="27px"
-            />
-          </Box>
-        </SimpleGrid>
-        <SimpleGrid
-          m="auto"
-          columns={4}
-          pl={[null, null, "10px"]}
-          pr={[null, null, "10px"]}
-          spacing="105px"
-        >
-          <Box w="150px">
-            <Heading as="h5" size="15px" color="gray" pt="40px" pl="30px">
-              CONNECT
-            </Heading>
-          </Box>
-          <Box pl="-20px" w="300px">
-            <Image
-              cursor="pointer"
-              w="70%"
-              mt="0px"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS5XY1bxw40RPgonlgvx4W_5JcNQA5szpT1Bw&usqp=CAU"
-            />
-          </Box>
-        </SimpleGrid>
       </SimpleGrid>
     </Box>
   );
