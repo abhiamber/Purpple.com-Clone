@@ -5,6 +5,7 @@ import SearchBox from "./components/SearchBox";
 import { useLayoutEffect, useState } from "react";
 import { Box } from "@chakra-ui/react";
 import AsFooter from "./components/Home/AsFooter";
+import Favicon from "react-favicon";
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const handleScroll = (e) => {
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <Box>
+      <Favicon url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAB8klEQVR4AZTTM4MdURiA4febOXMZ27ZZbxdbfyBVmqCNkzpOuti2mti2bXN5Z++d+db2Mzy2XGfqAmAWUJea+Q8sz6ngL1CPQkoeATT3EgQQyvHPlCgsYBrWRgKGxK+U7P9aBFrWz/5Pxf34CzxKq2coRhxDm6VTiA5sy98Dd2gwrj/BDk2I/0zm6+rT/FhzBs0sWYtFcQJO87qEe7akzrQkLt96yZmdl0jUj9Bq8Tjio3vj4iMUMVTg3PZL7JqzGwMk0lyGzhhOcOIArh2/Sy9XiaiggEU5FHh18zUkPCTu8e7GKwDqt27Ij4jNA+OTIopUVIEAwaCDpWADxrYAwPMxqvyzlGeOz19LscptHug3tC+160UIR4N0TeoBwK8XX9GMOA6CC3y0fUy5zQP9h/ej/p6ZeLE4XbIrSP2RzOM917ESirGFIGCrlD8EHzi/7gyJjExa9mzNl7vvODpjM58uvcCxLRyFQM5T0SoI8PbGa04uOkDDxnXxkzPw/qUTEsEgeYU172uogLEEL90l+eNvgkDQEmyVvNYRApTXA1/5du8DXxwh7WcKjlg4lmAUTEHhYo+jQpnDlBK0uRdSvnhxjKcEFIJ5rRJWiKoQ9fO+IeW/BawA/pOHOq7H4GSPji4YBRuwyetFIGuogfcJqHkiADlYwyogn7qfAAAAAElFTkSuQmCC"></Favicon>
       {scrolled ? (
         <Navbar />
       ) : (
