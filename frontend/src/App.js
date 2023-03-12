@@ -44,7 +44,7 @@ function App() {
       <AllRoutes />
       <AsFooter />
       <Box bg="black" color="white" p="10px" textAlign={"center"}>
-        @ All Right Reseerved{" "}
+        @ All right reserved{" "}
       </Box>
     </Box>
   );
