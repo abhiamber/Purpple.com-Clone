@@ -72,7 +72,7 @@ export default function AsFooter() {
         <VStack>
           <Box pt="8px">
             <Heading
-              textAlign="left"
+              textAlign="center"
               as="h5"
               size="15px"
               color="gray"
@@ -81,7 +81,7 @@ export default function AsFooter() {
               PURPLLE BUSINESS
             </Heading>
             <Text
-              textAlign="left"
+              textAlign="center"
               fontSize="14px"
               color="#6C7A82"
               cursor="pointer"
@@ -92,9 +92,9 @@ export default function AsFooter() {
           </Box>
         </VStack>
         <VStack>
-          <Box ml="80px">
+          <Box pt="8px">
             <Heading
-              textAlign="left"
+              textAlign="center"
               as="h5"
               size="15px"
               color="gray"
@@ -103,7 +103,7 @@ export default function AsFooter() {
               POLICY INFO
             </Heading>
             <Text
-              textAlign="left"
+              textAlign="center"
               fontSize="14px"
               color="#6C7A82"
               cursor="pointer"
@@ -112,7 +112,7 @@ export default function AsFooter() {
               Privacy Policy
             </Text>
             <Text
-              textAlign="left"
+              textAlign="center"
               fontSize="14px"
               color="#6C7A82"
               cursor="pointer"
@@ -121,7 +121,7 @@ export default function AsFooter() {
               Terms of Use
             </Text>
             <Text
-              textAlign="left"
+              textAlign="center"
               fontSize="14px"
               color="#6C7A82"
               cursor="pointer"
@@ -134,7 +134,7 @@ export default function AsFooter() {
         <VStack>
           <Box pt="8px">
             <Heading
-              textAlign="left"
+              textAlign="center"
               as="h5"
               size="15px"
               color="gray"
@@ -143,7 +143,7 @@ export default function AsFooter() {
               PURPlLE
             </Heading>
             <Text
-              textAlign="left"
+              textAlign="center"
               fontSize="14px"
               color="#6C7A82"
               cursor="pointer"
@@ -152,7 +152,7 @@ export default function AsFooter() {
               Need Help?
             </Text>
             <Text
-              textAlign="left"
+              textAlign="center"
               fontSize="14px"
               color="#6C7A82"
               cursor="pointer"
@@ -161,7 +161,7 @@ export default function AsFooter() {
               FAQ's
             </Text>
             <Text
-              textAlign="left"
+              textAlign="center"
               fontSize="14px"
               color="#6C7A82"
               cursor="pointer"

@@ -16,7 +16,7 @@ import AsSpLooksGallery from "../components/Home/AsSpLooksGallery";
 
 export default function Home() {
   return (
-    <Box m="auto" w="90%">
+    <Box m="auto" w="98%">
       <AsImgGallery />
       <AsCatSlider />
       <AsDeals />

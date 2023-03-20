@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../Utilis/Auth";
 import BackendURL from "../BackendURL";
+let google = window.google;
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,6 +28,7 @@ export default function Login() {
 
   /*google login*/
   const handleCallbackResponse = (response) => {
+    console.log("he");
     console.log("token:" + response.credential);
     var userObject = jwt_decode(response.credential);
     console.log(userObject);
@@ -35,6 +37,8 @@ export default function Login() {
   };
 
   useEffect(() => {
+    console.log("hel");
+
     /* global google */
     google.accounts.id.initialize({
       client_id:

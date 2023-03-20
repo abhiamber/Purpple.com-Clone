@@ -16,55 +16,57 @@ export default function SimpleSlider() {
     slidesToScroll: 1,
   };
   return (
-    <Slider {...settings}>
-      <Box m="auto">
-        <Image
-          w = {["375px","1260px","1260px"]}
-          h={["205px","305px","405px"]}
-          src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2/mediafiles/ecomm/misc/1673768282_webs-banner-copy-2.jpg"
-          m="auto"
-        />
-      </Box>
-      <Box>
-        <Image
-          w = {["375px","1260px","1260px"]}
-          h={["205px","305px","405px"]}
-          src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2,f-gif/mediafiles/ecomm/misc/1673671978_hp-web-2.gif"
-          m="auto"
-        />
-      </Box>
-      <Box>
-        <Image
-          w = {["375px","1260px","1260px"]}
-          h={["205px","305px","405px"]}
-          src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2/mediafiles/ecomm/misc/1673866064_maybelline_web_hp.jpg"
-          m="auto"
-        />
-      </Box>
-      <Box>
-        <Image
-          w = {["375px","1260px","1260px"]}
-          h={["205px","305px","405px"]}
-          src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2,f-gif/mediafiles/ecomm/misc/1673527119_k-beauty-web.gif"
-          m="auto"
-        />
-      </Box>
-      <Box>
-        <Image
-          w = {["375px","1260px","1260px"]}
-          h={["205px","305px","405px"]}
-          src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2,f-gif/mediafiles/ecomm/misc/1665665408_winter-essentials_hp_web.gif"
-          m="auto"
-        />
-      </Box>
-      <Box>
-        <Image
-          w = {["375px","1260px","1260px"]}
-          h={["205px","305px","405px"]}
-          src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2,f-gif/mediafiles/ecomm/misc/1669182865_magical-makeup-guide-web.gif"
-          m="auto"
-        />
-      </Box>
-    </Slider>
+    <Box pl={[null, "30px", null]} pr={[null, "30px", null]}>
+      <Slider {...settings}>
+        <Box m="auto">
+          <Image
+            w={["300px", "1200px", "1260px"]}
+            h={["205px", "305px", "405px"]}
+            src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2/mediafiles/ecomm/misc/1673768282_webs-banner-copy-2.jpg"
+            m="auto"
+          />
+        </Box>
+        <Box>
+          <Image
+            w={["300px", "1200px", "1260px"]}
+            h={["205px", "305px", "405px"]}
+            src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2,f-gif/mediafiles/ecomm/misc/1673671978_hp-web-2.gif"
+            m="auto"
+          />
+        </Box>
+        <Box>
+          <Image
+            w={["300px", "1200px", "1260px"]}
+            h={["205px", "305px", "405px"]}
+            src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2/mediafiles/ecomm/misc/1673866064_maybelline_web_hp.jpg"
+            m="auto"
+          />
+        </Box>
+        <Box>
+          <Image
+            w={["300px", "1200px", "1260px"]}
+            h={["205px", "305px", "405px"]}
+            src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2,f-gif/mediafiles/ecomm/misc/1673527119_k-beauty-web.gif"
+            m="auto"
+          />
+        </Box>
+        <Box>
+          <Image
+            w={["300px", "1200px", "1260px"]}
+            h={["205px", "305px", "405px"]}
+            src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2,f-gif/mediafiles/ecomm/misc/1665665408_winter-essentials_hp_web.gif"
+            m="auto"
+          />
+        </Box>
+        <Box>
+          <Image
+            w={["300px", "1200px", "1260px"]}
+            h={["205px", "305px", "405px"]}
+            src="https://media6.ppl-media.com/tr:w-1280,c-at_max,pr-true,dpr-2,f-gif/mediafiles/ecomm/misc/1669182865_magical-makeup-guide-web.gif"
+            m="auto"
+          />
+        </Box>
+      </Slider>
+    </Box>
   );
 }

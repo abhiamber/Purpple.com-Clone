@@ -57,15 +57,29 @@ const SearchBox = () => {
     dispatch(GetToSearchQueryProduct(query));
 
     Navigate("/productmain", { state: { q: "S", query } });
+    onClose();
     // console.log(query);
+  };
+
+  const handleSearchByEnter = (e) => {
+    if (e.key === "Enter") {
+      if (!query) {
+        return alert("Your Query is empty");
+      }
+
+      dispatch(GetToSearchQueryProduct(query));
+
+      Navigate("/productmain", { state: { q: "S", query } });
+      onClose();
+    }
   };
 
   return (
     <Box
-      pt="5px"
+      p="5px"
       display={{ sm: "none", base: "none", md: "block", lg: "block" }}
     >
-      <Flex p="3px">
+      <Flex p="3px" pb="7px">
         <Box h="10" ml="38px">
           <Flex>
             {" "}
@@ -104,6 +118,7 @@ const SearchBox = () => {
                       focusBorderColor="#fd1d92"
                       placeholder="Type here..."
                       onChange={(e) => setQuery(e.target.value)}
+                      onKeyDown={handleSearchByEnter}
                     />
                     <Text
                       ml="-10px"
@@ -140,7 +155,7 @@ const SearchBox = () => {
         <Spacer />
         <Box mr="20px" h="10">
           <Flex>
-            <Box color={"black"} fontWeight="light" fontSize="40px">
+            <Box color={"black"} fontWeight="light" fontSize="42px">
               <CiHeart />
             </Box>
 

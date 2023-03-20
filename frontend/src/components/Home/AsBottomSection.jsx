@@ -9,10 +9,18 @@ import {
 
 export default function AsBottomSection() {
   return (
-    <>
-      <SimpleGrid columns={[1,1,3]} mt="50px">
+    <Box pl={["30px", null, null]} pr={["30px", null, null]}>
+      <SimpleGrid columns={[1, 1, 3]} mt="50px">
         <VStack>
-          <Box border="1px solid gray" pl="25%" pr="25%" pt="20px" pb="20px">
+          <Box
+            border="1px solid gray"
+            pl="25%"
+            pr="25%"
+            pt="20px"
+            pb="20px"
+            h="100%"
+            w="100%"
+          >
             <Image
               m="auto"
               src="https://media6.ppl-media.com/mediafiles/ecomm/home/1499247950_secure-payment.jpg"
@@ -33,7 +41,15 @@ export default function AsBottomSection() {
           </Box>
         </VStack>
         <VStack>
-          <Box border="1px solid gray" pl="25%" pr="25%" pt="20px" pb="20px">
+          <Box
+            border="1px solid gray"
+            pl="25%"
+            pr="25%"
+            pt="20px"
+            pb="20px"
+            h="100%"
+            w="100%"
+          >
             <Image
               m="auto"
               src="https://media6.ppl-media.com/mediafiles/ecomm/home/1499247975_beauty-assistant.jpg"
@@ -55,7 +71,15 @@ export default function AsBottomSection() {
           </Box>
         </VStack>
         <VStack>
-          <Box border="1px solid gray" pl="25%" pr="25%" pt="20px" pb="20px">
+          <Box
+            border="1px solid gray"
+            pl="25%"
+            pr="25%"
+            pt="20px"
+            pb="20px"
+            h="100%"
+            w="100%"
+          >
             <Image
               m="auto"
               src="https://media6.ppl-media.com/mediafiles/ecomm/home/1499247997_help-center.jpg"
@@ -76,10 +100,21 @@ export default function AsBottomSection() {
           </Box>
         </VStack>
       </SimpleGrid>
-      <SimpleGrid columns={[1,1,2]} backgroundColor="rgba(245,246,247,1)" pt="40px" pb="40px">
+      <SimpleGrid
+        columns={[1, 1, 2]}
+        backgroundColor="rgba(245,246,247,1)"
+        pt="40px"
+        pb="40px"
+      >
         <VStack>
           <Box>
-            <Heading as="h4" fontSize="24px" textAlign="left" fontWeight="400" mb="15px">
+            <Heading
+              as="h4"
+              fontSize="24px"
+              textAlign="left"
+              fontWeight="400"
+              mb="15px"
+            >
               Spotlight
             </Heading>
             <Image
@@ -91,7 +126,13 @@ export default function AsBottomSection() {
         </VStack>
         <VStack>
           <Box>
-            <Heading as="h4" fontSize="24px" textAlign="left" fontWeight="400" mb="15px">
+            <Heading
+              as="h4"
+              fontSize="24px"
+              textAlign="left"
+              fontWeight="400"
+              mb="15px"
+            >
               Shop on the go
             </Heading>
             <Image
@@ -102,6 +143,6 @@ export default function AsBottomSection() {
           </Box>
         </VStack>
       </SimpleGrid>
-    </>
+    </Box>
   );
 }
