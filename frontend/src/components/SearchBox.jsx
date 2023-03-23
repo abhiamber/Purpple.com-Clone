@@ -114,21 +114,26 @@ const SearchBox = () => {
                       // variant="outline"
                       variant="flushed"
                       borderRadius={"1px"}
+                      borderBottom={"1px"}
+                      borderTop="0px"
+                      borderLeft={"0px"}
+                      borderRight="0px"
                       borderBottomColor={"#fd1d92"}
                       focusBorderColor="#fd1d92"
                       placeholder="Type here..."
                       onChange={(e) => setQuery(e.target.value)}
                       onKeyDown={handleSearchByEnter}
                     />
-                    <Text
-                      ml="-10px"
-                      fontSize={"30px"}
+                    <Button
+                      // ml="-10px"
+                      p="4px"
+                      fontSize={"40px"}
                       color="#fd1d92"
                       bg="white"
                       onClick={handleSearch}
                     >
                       <CiSearch />
-                    </Text>
+                    </Button>
                   </Flex>
                 </DrawerBody>
 

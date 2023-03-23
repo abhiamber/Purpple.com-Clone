@@ -85,8 +85,10 @@ app.delete("/deleteproduct/:id", async (req, res) => {
   } catch (e) {
     return res.send(e.message);
   }
-  console.log("helllo");
-  return;
+  // console.log("helllo");
+  // return;
 });
+
+
 
 module.exports = app;

@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../Utilis/Auth";
 import BackendURL from "../BackendURL";
-let google = window.google;
+// let google = window.google;
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -27,29 +27,29 @@ export default function Login() {
   const [first, setFirst] = useState({});
 
   /*google login*/
-  const handleCallbackResponse = (response) => {
-    console.log("he");
-    console.log("token:" + response.credential);
-    var userObject = jwt_decode(response.credential);
-    console.log(userObject);
-    setFirst(userObject);
-    document.getElementById("signInDiv").hidden = true;
-  };
+  // const handleCallbackResponse = (response) => {
+  //   console.log("he");
+  //   console.log("token:" + response.credential);
+  //   var userObject = jwt_decode(response.credential);
+  //   console.log(userObject);
+  //   setFirst(userObject);
+  //   document.getElementById("signInDiv").hidden = true;
+  // };
 
-  useEffect(() => {
-    console.log("hel");
+  // useEffect(() => {
+  //   console.log("hel");
 
-    /* global google */
-    google.accounts.id.initialize({
-      client_id:
-        "514340861987-f7tbdfd063bbb72d0452dm5je7onj1vj.apps.googleusercontent.com",
-      callback: handleCallbackResponse,
-    });
-    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "large",
-    });
-  }, []);
+  //   /* global google */
+  //   google.accounts.id.initialize({
+  //     client_id:
+  //       "514340861987-f7tbdfd063bbb72d0452dm5je7onj1vj.apps.googleusercontent.com",
+  //     callback: handleCallbackResponse,
+  //   });
+  //   google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+  //     theme: "outline",
+  //     size: "large",
+  //   });
+  // }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();

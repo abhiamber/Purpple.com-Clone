@@ -9,10 +9,8 @@ import Favicon from "react-favicon";
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const handleScroll = (e) => {
-    // console.log(scrolled,typeof window.scrollY);
-
     if (scrolled && window.scrollY === 0) {
-      setScrolled(false);
+      setScrolled(true);
     }
 
     setScrolled(window.scrollY > 0);
@@ -53,4 +51,3 @@ function App() {
 }
 
 export default App;
-

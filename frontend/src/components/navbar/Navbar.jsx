@@ -53,7 +53,18 @@ const Navbar = () => {
     Navigate("/productmain", { state: { q: "S", query } });
     // console.log(query);
   };
+  const handleSearchByEnter = (e) => {
+    if (e.key === "Enter") {
+      if (!query) {
+        return alert("Your Query is empty");
+      }
 
+      dispatch(GetToSearchQueryProduct(query));
+
+      Navigate("/productmain", { state: { q: "S", query } });
+      onClose();
+    }
+  };
   return (
     <Flex
       pl="8px"
@@ -124,21 +135,25 @@ const Navbar = () => {
                         // variant="outline"
                         variant="flushed"
                         borderRadius={"1px"}
+                        borderBottom={"1px"}
+                        borderTop="0px"
+                        borderLeft={"0px"}
+                        borderRight="0px"
                         borderBottomColor={"#fd1d92"}
                         focusBorderColor="#fd1d92"
                         placeholder="Type here..."
                         onChange={(e) => setQuery(e.target.value)}
+                        onKeyDown={handleSearchByEnter}
                       />
-                      <Text
-                        ml="-10px"
-                        pt="10px"
-                        fontSize={"30px"}
+                      <Button
+                        ml="0px"
+                        p="4px"
                         color="#fd1d92"
                         bg="white"
                         onClick={handleSearch}
                       >
-                        <CiSearch />
-                      </Text>
+                        <CiSearch fontSize={"40px"} />
+                      </Button>
                     </Flex>
                   </DrawerBody>
 
