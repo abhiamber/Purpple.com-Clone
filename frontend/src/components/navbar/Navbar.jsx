@@ -173,12 +173,13 @@ const Navbar = () => {
                   <CiFaceSmile />
                 </Box>
               </PopoverTrigger>
-              <PopoverContent w="20vw">
+              <PopoverContent w="100%">
                 <PopoverArrow />
                 <PopoverHeader>
                   <Box h="0.5px" bg="black" w="100%" m="auto"></Box>
                   <Flex
                     mx="10px"
+                    // w="100%"
                     alignItems="center"
                     justifyContent="space-between"
                     flexDirection={"column"}
