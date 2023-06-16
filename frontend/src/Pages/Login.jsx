@@ -79,7 +79,7 @@ export default function Login() {
         }
         if (data.status === "OK") {
           alert("Login Successful");
-          console.log(data);
+          // console.log(data);
           login(data);
           navigate(redirectPath, { replace: true });
         }
@@ -88,7 +88,7 @@ export default function Login() {
   };
 
   if (first.name) {
-    console.log(first.name);
+    // console.log(first.name);
     login({ user: first.name });
     alert(`Login Successful with ${first.name}`);
     navigate(redirectPath, { replace: true });

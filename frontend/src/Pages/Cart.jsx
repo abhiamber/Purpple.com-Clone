@@ -25,7 +25,7 @@ import {
   Heading,
   Card,
 } from "@chakra-ui/react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
 
 const Cart = () => {
@@ -34,10 +34,10 @@ const Cart = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
+  let navigate = useNavigate();
   const [cartId, setCartId] = useState("");
 
   const handleAdd = async (id, qty) => {
-    // console.log(id, qty);
     try {
       fetch(`${BackendURL}/cart/`, {
         method: "POST",
@@ -53,7 +53,7 @@ const Cart = () => {
           getCartItem();
         })
         .catch((err) => console.log(err));
-      alert("quantity changed successfully");
+      // alert("quantity changed successfully");
     } catch (err) {
       alert("You cannot add product without Login");
     }
@@ -82,29 +82,29 @@ const Cart = () => {
     }
   };
 
-  const getCartItem = () => {
+  const getCartItem = async () => {
     let p = localStorage.getItem("token") || null;
-    if (p === null) {
-      p = "Pushpendra Singh";
+
+    if (!p) {
+      return navigate("/login");
     }
-    fetch(`${BackendURL}/cart/fetchcartItem`, {
+
+    let res = await fetch(`${BackendURL}/cart/fetchcartItem`, {
       headers: {
         "Content-Type": "application/json",
         token: p,
       },
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // console.log(res);
-        if (res.state === "NOT") {
-          return setCart([]);
-        }
-        setCart(res[0].products);
-        // console.log(res[0]);
-        setCartId(res[0]._id);
-        localStorage.setItem("cartItem", res[0]._id);
-      })
-      .catch((err) => console.log(err));
+    });
+    try {
+      let data = await res.json();
+
+      if (data.state === "NOT") {
+        return alert("Your token is expired please login to get new token");
+      }
+      setCart(data[0].products);
+      setCartId(data[0]._id);
+      localStorage.setItem("cartItem", data[0]._id);
+    } catch (err) {}
   };
 
   useEffect(() => {

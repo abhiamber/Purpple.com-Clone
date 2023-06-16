@@ -15,7 +15,6 @@ import BackendURL from "../BackendURL";
 import "./Payment.css";
 const Payment = () => {
   const [cart, setCart] = useState([]);
-  let userid = localStorage.getItem("cartItem");
   useEffect(() => {
     fetch(`${BackendURL}/cart/fetchcartItem`, {
       headers: {
@@ -63,20 +62,9 @@ const Payment = () => {
       .then((res) => res.json())
       .then((res) => {
         removeItemFromCart();
-        console.log(res);
       })
       .catch((err) => console.log(err));
 
-    // fetch(`${BackendURL}/cart/delete/${userid}`, {
-    //   method: "DELETE",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     token: localStorage.getItem("token"),
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((res) => console.log("Order Placed"))
-    //   .catch((err) => console.log(err));
     alert("Successfully placed order");
     return (window.location.href = "/");
   };
