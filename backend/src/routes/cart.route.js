@@ -10,11 +10,11 @@ let CartModel = require("../models/cart.model");
 
 app.get("/fetchcartItem", async (req, res) => {
   let { token } = req.headers;
-  if (token == "Pushpendra Singh") {
-    return res.send({ msg: "Not logged in", state: "NOT" });
-  }
 
   token = jwt.verify(token, process.env.token_password);
+  if (!token) {
+    return res.send({ msg: "Not logged in", state: "NOT" });
+  }
   let userId = token.id;
   let cartItem = await CartModel.find({ userId, active: true }).populate({
     path: "products",
@@ -22,7 +22,6 @@ app.get("/fetchcartItem", async (req, res) => {
   });
   try {
     if (cartItem.length > 0) {
-      // console.log(cartItem);
       return res.send(cartItem);
     } else {
       return res.send({

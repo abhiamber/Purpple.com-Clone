@@ -30,29 +30,23 @@ LoginRoute.post("/", async (req, res) => {
             name: user.name,
           },
           process.env.refresh_password,
-          { expiresIn: "7days" }
+          { expiresIn: "28days" }
         );
-        res
-          .status(201)
-          .json({
-            token,
-            refreshToken,
-            message: "Login Successful",
-            status: "OK",
-            user: user.name,
-            role: user.role,
-            phone: user.phone,
-            email: user.email,
-          });
+        res.status(201).json({
+          token,
+          refreshToken,
+          message: "Login Successful",
+          status: "OK",
+          user: user.name,
+          role: user.role,
+          phone: user.phone,
+          email: user.email,
+        });
       }
     }
   } catch (e) {
     console.log(e);
   }
 });
-
-
-
-
 
 module.exports = LoginRoute;
