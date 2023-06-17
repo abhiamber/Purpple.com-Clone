@@ -9,9 +9,9 @@ import {
   Heading,
   Text,
   useColorModeValue,
+  FormErrorMessage,
 } from "@chakra-ui/react";
-import jwt_decode from "jwt-decode";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../Utilis/Auth";
 import BackendURL from "../BackendURL";
@@ -24,42 +24,28 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
   const redirectPath = location.state?.path || "/";
-  const [first, setFirst] = useState({});
 
-  /*google login*/
-  // const handleCallbackResponse = (response) => {
-  //   console.log("he");
-  //   console.log("token:" + response.credential);
-  //   var userObject = jwt_decode(response.credential);
-  //   console.log(userObject);
-  //   setFirst(userObject);
-  //   document.getElementById("signInDiv").hidden = true;
-  // };
+  // Email Validation by using genral expression
+  let isEmailErrorFunc = () => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-  // useEffect(() => {
-  //   console.log("hel");
+    if (emailRegex.test(email)) {
+      return true;
+    }
+    return false;
+  };
 
-  //   /* global google */
-  //   google.accounts.id.initialize({
-  //     client_id:
-  //       "514340861987-f7tbdfd063bbb72d0452dm5je7onj1vj.apps.googleusercontent.com",
-  //     callback: handleCallbackResponse,
-  //   });
-  //   google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-  //     theme: "outline",
-  //     size: "large",
-  //   });
-  // }, []);
+  // password validation by checking length should be geater than 6
+  let isPasswordErrorFunc = () => {
+    if (password.length > 5) {
+      return true;
+    }
+    return false;
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-    if (!emailRegex.test(email)) {
-      return alert("Please type Valid email id");
-    } else if (!password) {
-      return alert("Please fill password");
-    }
     fetch(`${BackendURL}/login`, {
       method: "POST",
       crossDomain: true,
@@ -76,30 +62,16 @@ export default function Login() {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "NO") {
-          if (data.message === "user not found") {
-            alert("user not Exist Please Signup First");
-            navigate("/register");
-          }
-          if (data.message === "Unauthorized") {
-            alert("Please fill correct password");
-          }
+          return alert("invalid Credentials");
         }
         if (data.status === "OK") {
           alert("Login Successful");
-          // console.log(data);
           login(data);
           navigate(redirectPath, { replace: true });
         }
       })
       .catch((e) => alert("ERROR", e.message));
   };
-
-  if (first.name) {
-    // console.log(first.name);
-    login({ user: first.name });
-    alert(`Login Successful with ${first.name}`);
-    navigate(redirectPath, { replace: true });
-  }
 
   return (
     <Flex
@@ -121,16 +93,25 @@ export default function Login() {
           p={8}
         >
           <Stack spacing={4}>
-            <FormControl id="email">
+            <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
               <Input type="email" onChange={(e) => setEmail(e.target.value)} />
+
+              {!isEmailErrorFunc() && email !== "" && (
+                <FormLabel color={"red"}>Invalid Email</FormLabel>
+              )}
             </FormControl>
-            <FormControl id="password">
+            <FormControl id="password" isRequired>
               <FormLabel>Password</FormLabel>
               <Input
                 type="password"
                 onChange={(e) => setPassword(e.target.value)}
               />
+              {!isPasswordErrorFunc() && password !== "" && (
+                <FormLabel color="red">
+                  Password should be grater than 6
+                </FormLabel>
+              )}
             </FormControl>
 
             <Text>{"------ or connect with --------"}</Text>
@@ -148,6 +129,7 @@ export default function Login() {
               </Stack>
 
               <Button
+                isDisabled={!isEmailErrorFunc() || !isPasswordErrorFunc()}
                 onClick={handleLogin}
                 fontWeight="600"
                 bgColor="black"

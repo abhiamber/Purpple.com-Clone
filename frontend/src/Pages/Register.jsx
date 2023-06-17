@@ -26,18 +26,27 @@ export default function Register() {
   const navigate = useNavigate();
   const location = useLocation();
   const redirectPath = location.state?.path || "/login";
+
+  let isEmailErrorFunc = () => {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+    if (emailRegex.test(email)) {
+      return true;
+    }
+    return false;
+  };
+
+  // password validation by checking length should be geater than 6
+  let isPasswordErrorFunc = () => {
+    if (password.length > 5) {
+      return true;
+    }
+    return false;
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 
-    console.log({ name, address, email, password });
-    if (name === "" || email === "" || password === "") {
-      alert(`Please Fill Mandatory * Fileld`);
-    } else if (!emailRegex.test(email)) {
-      return alert("Please type Valid email id");
-    } else if (!password) {
-      return alert("Please fill password");
-    }
     fetch(`${BackendURL}/signup`, {
       method: "POST",
       crossDomain: true,
@@ -55,7 +64,6 @@ export default function Register() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data, "userRegister");
         if (data.status === "NO") {
           alert("User Already Exists");
         }
@@ -90,6 +98,9 @@ export default function Register() {
                 onChange={(e) => SetName(e.target.value)}
                 required
               />
+              {name === "" && (
+                <FormLabel color="red">Name is required here</FormLabel>
+              )}
             </FormControl>
 
             <FormControl id="address">
@@ -109,6 +120,9 @@ export default function Register() {
                 onChange={(e) => Setemail(e.target.value)}
                 required
               />
+              {!isEmailErrorFunc() && email !== "" && (
+                <FormLabel color={"red"}>Invalid Email</FormLabel>
+              )}
             </FormControl>
             <FormControl id="phone">
               <FormLabel>Phone Number (optional) </FormLabel>
@@ -134,9 +148,17 @@ export default function Register() {
                   </Button>
                 </InputRightElement>
               </InputGroup>
+              {!isPasswordErrorFunc() && password !== "" && (
+                <FormLabel color="red">
+                  Password should be grater than 6
+                </FormLabel>
+              )}
             </FormControl>
             <Stack spacing={10} pt={2}>
               <Button
+                isDisabled={
+                  !isEmailErrorFunc() || !isPasswordErrorFunc() || name === ""
+                }
                 fontWeight="600"
                 bgColor="black"
                 size="lg"
