@@ -8,7 +8,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { GetToProduct } from "../../redux/prod/prod.action";
+// import { GetToProduct } from "../../redux/prod/prod.action";
 // import { useDispatch, useSelector } from "react-redux";
 // import { GetToQueryProduct } from "../../redux/prod/prod.action";
 

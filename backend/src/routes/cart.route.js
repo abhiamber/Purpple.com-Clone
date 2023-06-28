@@ -10,6 +10,11 @@ let CartModel = require("../models/cart.model");
 
 app.get("/fetchcartItem", async (req, res) => {
   let { token } = req.headers;
+  let decode = jwt.decode(token);
+
+  if (Date.now() >= decode.exp * 1000) {
+    return res.send({ msg: "Not logged in", state: "Expired" });
+  }
 
   token = jwt.verify(token, process.env.token_password);
   if (!token) {

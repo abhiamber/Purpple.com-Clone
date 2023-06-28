@@ -48,7 +48,7 @@ const Navbar = () => {
       return alert("Your Query is empty");
     }
 
-    dispatch(GetToSearchQueryProduct(query));
+    // dispatch(GetToSearchQueryProduct(query));
 
     Navigate("/productmain", { state: { q: "S", query } });
     // console.log(query);

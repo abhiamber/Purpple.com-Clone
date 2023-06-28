@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
-  Grid,
-  GridItem,
+  // Grid,
+  // GridItem,
   Image,
   SimpleGrid,
   Skeleton,
-  Stack,
+  // Stack,
   Text,
 } from "@chakra-ui/react";
 import { StarIcon } from "@chakra-ui/icons";
@@ -29,19 +29,19 @@ const Product = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const { prod } = useSelector((store) => store);
-  console.log(prod);
+  // console.log(prod);
 
   const setLengthFunction = () => {
-    // console.log("bjabxh");
     setMapData(prod.data);
   };
 
   const getData = () => {
+    // console.log("hello", location.state);
     if (!location.state) {
       return dispatch(GetToProduct());
     }
     // console.log(location.state);
-    if (location.state.q === "S") {
+    else if (location.state.q === "S") {
       dispatch(GetToSearchQueryProduct(location.state.query));
     } else if (location.state.q === "N") {
       dispatch(GetToQueryProduct(location.state.query));

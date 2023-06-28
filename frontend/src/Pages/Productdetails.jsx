@@ -40,25 +40,12 @@ const Productdetails = () => {
         },
       })
         .then((res) => res.json())
-        .then((res) => console.log(res))
+        .then((res) => console.log(res, "added"))
         .catch((err) => console.log(err));
       alert("Product added successfully");
     } catch (err) {
       alert("You cannot add product without Login");
     }
-
-    // const res = await fetch(`${BackendURL}/order/post`, {
-    //   method: "POST",
-    //   body: JSON.stringify(pro),
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     "email": localStorage.getItem("email")
-    //   }
-    // }).then((res) => res.json()).then((res) => {
-    //   console.log(res)
-    // }).catch((err) => {
-    //   console.log(err)
-    // });
   };
 
   let rating = "";

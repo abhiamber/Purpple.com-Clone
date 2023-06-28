@@ -21,20 +21,11 @@ LoginRoute.post("/", async (req, res) => {
             name: user.name,
           },
           process.env.token_password,
-          { expiresIn: "2days" }
-        );
-        const refreshToken = jwt.sign(
-          {
-            id: user._id,
-            role: user.role,
-            name: user.name,
-          },
-          process.env.refresh_password,
           { expiresIn: "28days" }
         );
+
         res.status(201).json({
           token,
-          refreshToken,
           message: "Login Successful",
           status: "OK",
           user: user.name,

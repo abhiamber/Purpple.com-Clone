@@ -9,7 +9,6 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  FormErrorMessage,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";

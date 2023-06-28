@@ -8,18 +8,6 @@ import {
   Text,
   Divider,
   Button,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  useDisclosure,
-  FormControl,
-  FormLabel,
-  Input,
-  // CardFooter,
   Stack,
   CardBody,
   Heading,
@@ -31,9 +19,6 @@ import { AddIcon, DeleteIcon, MinusIcon } from "@chakra-ui/icons";
 const Cart = () => {
   const [cart, setCart] = useState([]);
   const [pin, setPin] = useState("");
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const initialRef = React.useRef(null);
-  const finalRef = React.useRef(null);
   let navigate = useNavigate();
   const [cartId, setCartId] = useState("");
 
@@ -97,14 +82,16 @@ const Cart = () => {
     });
     try {
       let data = await res.json();
-
-      if (data.state === "NOT") {
-        return alert("Your token is expired please login to get new token");
+      if (data.state === "Expired") {
+        return alert("Your token is expired please login to see cart details");
       }
+      console.log(data);
       setCart(data[0].products);
       setCartId(data[0]._id);
       localStorage.setItem("cartItem", data[0]._id);
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -264,6 +251,20 @@ const Cart = () => {
               ₹{total - total * (10 / 100)}
             </Text>
           </Box>
+          <NavLink to="/checkout">
+            <Button
+              className="placeorder"
+              bg={"#e40980"}
+              borderRadius="0px"
+              _hover={{ bg: "#e40980" }}
+              color="white"
+              mr={3}
+              isDisabled={cart.length === 0}
+            >
+              Proceed To checkout
+            </Button>
+          </NavLink>
+          {/*
           <Button
             className="placeorder"
             bg={"#e40980"}
@@ -328,7 +329,7 @@ const Cart = () => {
                 <Button onClick={onClose}>Cancel</Button>
               </ModalFooter>
             </ModalContent>
-          </Modal>
+</Modal>*/}
           <p>Need Help? 9039362782 </p>
         </Box>
       </Box>
